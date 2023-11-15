@@ -61,7 +61,7 @@ spec:
       name: Fetch Base
       action: fetch:cookiecutter
       input:
-        url: https://github.com/mryutran/backstage_tf_s3_template/tree/main/templates/
+        url: ./templates
         values:
           name: "{{ parameters.name }}"
           type: "{{ parameters.type }}"
