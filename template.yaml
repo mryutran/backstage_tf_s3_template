@@ -69,9 +69,9 @@ spec:
           bucket: "{{ parameters.bucket }}"
           region: "{{ parameters.region }}"
           description: "{{ parameters.description }}"
-          repo_name: "{{ (parameters.repoUrl | parseRepoUrl)['repo'] }}"
-          repo_owner: "{{ (parameters.repoUrl | parseRepoUrl)['owner'] }}"
-  
+          repo_name: "{{ parameters.repoUrl | parseRepoUrl.repo }}"
+          repo_owner: "{{ parameters.repoUrl | parseRepoUrl.owner }}"
+
     - id: publish
       name: Publish
       action: publish:github
