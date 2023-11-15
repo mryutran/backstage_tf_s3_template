@@ -1,3 +1,3 @@
-# ${{ values.name }}
+# ${{ cookiecutter.name }}
 
-${{ values.description }}
+${{ cookiecutter.description }}
