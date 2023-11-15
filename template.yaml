@@ -49,7 +49,6 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
-          value: terraform-${{ parameters.name }}
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
@@ -61,7 +60,7 @@ spec:
       name: Fetch Base
       action: fetch:cookiecutter
       input:
-        url: https://github.com/mryutran/backstage_tf_s3_template/tree/main/templates/
+        url: ./templates
         values:
           name: "{{ parameters.name }}"
           type: "{{ parameters.type }}"
@@ -69,9 +68,8 @@ spec:
           bucket: "{{ parameters.bucket }}"
           region: "{{ parameters.region }}"
           description: "{{ parameters.description }}"
-          repo_name: "{{ (parameters.repoUrl | parseRepoUrl)["repo"] }}"
-          repo_owner: "{{ (parameters.repoUrl | parseRepoUrl)["owner"] }}"
-  
+          repo_name: "{{ parameters.repoUrl }}"
+
     - id: publish
       name: Publish
       action: publish:github

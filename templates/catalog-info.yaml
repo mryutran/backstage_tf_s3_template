@@ -1,25 +1,25 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{ cookiecutter.name }}
-  description: ${{ cookiecutter.description }}
+  name: {{ cookiecutter.name }}
+  description: {{ cookiecutter.description }}
   annotations:
      backstage.io/techdocs-ref: dir:./docs
-     github.com/project-slug: ${{ cookiecutter.repo_owner }}/${{ cookiecutter.repo_name }}
+     github.com/project-slug: mryutran/{{ cookiecutter.repo_name }}
 spec:
   type: service
-  owner: ${{ cookiecutter.owner }}
+  owner: {{ cookiecutter.owner }}
   lifecycle: production
   providesApis:
-    - ${{ cookiecutter.name }}
+    - {{ cookiecutter.name }}
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: ${{ cookiecutter.name }}
-  description: ${{ cookiecutter.description }}
+  name: {{ cookiecutter.name }}
+  description: {{ cookiecutter.description }}
 spec:
   type: internal
   lifecycle: production
-  owner: matt@doics.co
-  definition: "${{ cookiecutter.description }}"
+  owner: mryutran
+  definition: "{{ cookiecutter.description }}"
