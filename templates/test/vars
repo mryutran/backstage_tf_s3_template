@@ -1,2 +1,2 @@
-region        = "${{values.region}}"
-bucket_prefix = "${{values.bucket}}"
+region        = "${{cookiecutter.region}}"
+bucket_prefix = "${{cookiecutter.bucket}}"

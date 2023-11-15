@@ -1,5 +1,4 @@
-
-apiVersion: backstage.io/v1alpha1
+apiVersion: backstage.io/v1beta2
 kind: Template
 # some metadata about the template itself
 metadata:
@@ -60,20 +59,18 @@ spec:
   steps:
     - id: fetch-base
       name: Fetch Base
-      action: fetch:template
+      action: fetch:cookiecutter
       input:
         url: https://github.com/mryutran/backstage_tf_s3_template/tree/main/templates/
-        copyWithoutTemplating:
-          - .github/workflows/*
         values:
-          name: ${{ parameters.name }}
-          type: ${{ parameters.type }}
-          owner: ${{ parameters.owner }}
-          bucket: ${{ parameters.bucket }}
-          region: ${{ parameters.region }}
-          description: ${{ parameters.description }}
-          repo_name: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
-          repo_owner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+          name: "${{ parameters.name }}"
+          type: "${{ parameters.type }}"
+          owner: "${{ parameters.owner }}"
+          bucket: "${{ parameters.bucket }}"
+          region: "${{ parameters.region }}"
+          description: "${{ parameters.description }}"
+          repo_name: "${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}"
+          repo_owner: "${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}"
   
     - id: create-tfvars
       name: Rename file to create tfvars file
@@ -93,9 +90,9 @@ spec:
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ['github.com']
-        description: Terraform Module for ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        allowedHosts: ["github.com"]
+        description: "Terraform Module for ${{ parameters.name }}"
+        repoUrl: "${{ parameters.repoUrl }}"
         requireCodeOwnerReviews: true
         defaultBranch: main
 
@@ -103,5 +100,5 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+        repoContentsUrl: "${{ steps.publish.output.repoContentsUrl }}"
+        catalogInfoPath: "/catalog-info.yaml"
